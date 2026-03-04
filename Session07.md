@@ -2,7 +2,7 @@
 ### BS859 Applied Genetic Analysis
 ### March 4, 2026
 
-- this exam is about how you interpret results and understanding of concepts
+- this exam is about how you interpret results and understanding of concepts, no math will be performed
 
 ## PART 1: LECTURE CONTENT - CONCEPTUAL FOUNDATIONS
 
