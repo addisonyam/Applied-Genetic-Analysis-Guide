@@ -315,3 +315,163 @@ Question 6 - When annotating a list of SNPs with Ensembl VEP, which of the follo
 - VEP estimates linkage disequilibrium between nearby variants during annotation
 - VEP performs Bayesian fine-mapping and calculates posterior inclusion probabilities
 - **VEP can return multiple transcript-specific consequences per variant, including predicted functional impacts**
+
+## Post-Class Quiz 9: 
+1. Which of these is a key limitation of applying LD Score regression to small GWAS (e.g., N < 5,000)?
+
+It cannot use summary statistics
+
+It always overestimates liability-scale heritability
+
+**It has low power and imprecise heritability estimates**
+
+It requires whole-genome sequencing
+
+2. What is the primary purpose of using a Genetic Relationship Matrix (GRM) in GRM-based heritability estimation (e.g., in GCTA)?
+
+To identify causal variants for fine-mapping
+To measure empirical genetic similarity among individuals for variance-component modeling
+**To replace phenotype measurements with genetic PCs**
+To compute LD scores for summary statistics
+
+3. Under the threshold model for a binary trait, an individual is affected when:
+
+The genotype contains at least one risk allele
+The observed phenotype exceeds the population mean
+**The underlying liability exceeds a threshold value**
+The environmental exposure exceeds a fixed level
+
+4. A SNP annotation group or category enrichment score greater than 1 (e.g., in LD score regression) indicates that:
+
+The total heritability is zero
+The annotation category has no SNPs
+SNPs in the category contribute less heritability than expected
+**SNPs in the category contribute more heritability than expected**
+
+5. Select all true statements about using cross-trait LD score regression for estimating genetic correlation:
+
+**Sample overlap between two GWAS affects the intercept but not the slope in cross-trait LD score regression.**
+
+Sample overlap for the GWAS of the two traits biases the genetic correlation estimates in cross-trait LD score regression.
+
+The intercept is a measure of inflation due to cryptic relatedness/population structure for both traits combined.
+
+**If the two studies and traits are identical, the genetic correlation and heritability are identical.**
+
+Which of the following are reasons to remove strand-ambiguous SNPs during summary-statistics preprocessing for LD score regression? (choose all that are true)
+
+**Their alleles (A/T or C/G) can look the same after strand flipping, making allele alignment across datasets uncertain**
+
+They often have higher LD scores than other SNPs and may bias the regression if kept in the analysis
+
+They usually fail quality control because their imputation INFO scores are lower than average
+
+They are more likely to be rare variants that are not included in the LD reference panel
+
+## Post-Class Quiz 10: 
+
+I got number 1 wrong and don't know the right answer
+1. Which of the following statements correctly describe the relationship among polygenic risk scores (PRS), LD score regression heritability estimates, and linkage disequilibrium (LD)? (Select all that apply.)
+
+LD score regression estimates SNP heritability from GWAS summary statistics using LD information; this heritability represents an upper limit on how much variance a PRS can explain in an independent sample
+
+When the discovery GWAS sample size is small, LD score regression will generally overestimate heritability relative to the predictive performance achievable by PRS
+
+Differences in LD patterns and allele frequencies across populations can reduce the performance of PRS when applied across ancestries, even if the same causal variants are involved
+
+PRS methods that explicitly model LD (e.g., using an LD matrix from a well-matched reference) can improve prediction accuracy compared to simple clumping and thresholding
+
+LD score regression requires individual-level genotype data from the discovery GWAS and therefore cannot be applied using summary statistics alone
+
+2. If an independent validation dataset is not available, which approach is most appropriate for estimating the out-of-sample predictive performance of a polygenic risk score (PRS) while minimizing overfitting?
+
+**Use K-fold cross-validation (e.g., 10-fold) within the target dataset to obtain out-of-sample performance estimates**
+Use the base GWAS dataset as the validation sample to ensure independence from the target dataset
+Report the best-performing model from the training data as an unbiased estimate of predictive performance
+Increase the effective sample size by duplicating observations to stabilize performance estimates
+
+3. In PRSice, empirical p-values are estimated using permutation testing. Suppose you run PRSice with --perm 1000 and obtain an Empirical-P value of 0.000999001. What does this result imply?
+
+Exactly 999 out of the 1000 permutations produced a p-value smaller than the observed p-value
+
+**None of the 1000 permutations produced a p-value smaller than the observed p-value, yielding an empirical p-value of 1/(1000+1)​**
+
+The observed (unadjusted) p-value is effectively treated as zero due to its magnitude
+
+The permutation procedure becomes unreliable when the observed p-value is smaller than 10^(-10)
+
+4. Which of the following is NOT a standard step performed by PRSice when constructing a polygenic risk score using the clumping and thresholding (C&T) approach?
+
+Removing SNPs that are present in only one of the datasets (base or target)
+
+Excluding strand-ambiguous SNPs (e.g., A/T or C/G) to ensure allele alignment
+
+**Imputing missing genotype or summary statistic values in the base GWAS dataset**
+
+Performing LD clumping by retaining the SNP with the smallest p-value within each LD block
+
+5. Which of the following statements are true regarding the impact of population structure on polygenic risk score (PRS) analyses? (Select all that apply.)
+
+**Population structure–related bias can be amplified in PRS because a large number of null variants may be included in the score**
+
+**When base and target samples are drawn from genetically similar populations, adjusting for principal components (PCs) can often adequately control for population stratification**
+
+PRSs developed in one ancestry generally transfer well to other ancestries as long as principal components are included in the model
+
+Differences in linkage disequilibrium (LD) patterns and allele frequencies across populations have minimal impact on PRS transferability
+
+6. Which of the following statements correctly describe Bayesian polygenic risk score (PRS) methods (e.g., LDpred, sBayesR, PRS-CS)? (Select all that apply.)
+
+**They apply prior distributions to SNP effect sizes to induce shrinkage and may model mixtures of causal and non-causal variants**
+
+They require individual-level genotype data from the base GWAS to estimate SNP effects
+
+**They explicitly incorporate linkage disequilibrium (LD) structure (e.g., via an LD matrix or reference panel) when estimating effect sizes**
+
+They typically yield PRS estimates that are identical to those obtained from the best-performing clumping and thresholding (C&T) model
+
+## Post-Class Quiz 11
+I got 4 out 6 wrong for quiz but i don't know which are wrong
+
+
+1. Which of the following scenarios would NOT violate the exclusion restriction assumption in Mendelian Randomization? (Select ALL that apply)
+
+A genetic variant influences both the exposure and an independent biological pathway that affects the outcome
+**A genetic variant influences both the exposure and a secondary trait, but the secondary trait lies entirely on the causal pathway between exposure and outcome**
+A genetic variant influences an alternative trait that affects the outcome independently of the exposure
+**A genetic variant influences an exposure that in turn affects the outcome, with additional downstream mediators involved**
+
+2. Which of the following statements about the inverse-variance weighted (IVW) estimator in Mendelian Randomization are correct? (Select ALL that apply)
+
+**IVW is equivalent to fitting a weighted regression of SNP–outcome effects on SNP–exposure effects with the intercept constrained to zero**
+**IVW provides a consistent estimate if all instruments are valid or if pleiotropic effects are balanced around zero**
+IVW remains consistent as long as at least 50% of instruments are valid
+**IVW explicitly models pleiotropic effects through an intercept term**
+IVW is biased if horizontal pleiotropy induces directional effects on the outcome
+
+3. Which of the following situations can bias a two-sample MR analysis? (Select ALL that apply)
+
+**Overlap between exposure and outcome samples**
+**Different underlying populations for the two samples**
+Using multiple SNPs as instruments
+Independent SNP instruments
+
+4, Which feature of Multivariable MR (MVMR) allows it to remain valid when genetic variants influence multiple traits?
+
+It removes all variants associated with more than one exposure
+**It models multiple exposures simultaneously so that indirect pathways from instruments to outcome are accounted for**
+It assumes that pleiotropic effects cancel out across SNPs
+It downweights SNPs with large effects on the outcome
+
+5. Which of the following could lead to violations of the independence assumption in Mendelian Randomization? (Select ALL that apply)
+**Population stratification**
+**Genetic variants associated with unmeasured socioeconomic status, which is also associated with the outcome.**
+Linkage disequilibrium among SNPs
+**Reverse causation**
+
+6. Which statistical methods can help to alleviate the problem that pleiotropy causes in MR?
+
+**MR-Egger**
+**Weighted Median**
+**Outlier removal**
+**Multivariable MR**
